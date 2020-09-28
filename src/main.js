@@ -6,6 +6,7 @@ const bot = new Discord.Client()
 const { TOKEN } = process.env
 
 const HELP_MSG = `UPPERCASSED message - gif
+RD - random gif
 HELP ME GIF BOT - this help message`
 
 bot.login(TOKEN)
@@ -19,6 +20,14 @@ bot.on('message', async msg => {
 
   if (content === 'HELP ME GIF BOT') {
     return msg.reply(HELP_MSG)
+  }
+
+  if (content === 'RD') {
+    const {
+      data: { embed_url },
+    } = await giphy.random()
+
+    return msg.reply(embed_url)
   }
 
   if (content.toLocaleUpperCase('pl') === content) {
