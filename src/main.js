@@ -9,6 +9,8 @@ const HELP_MSG = `UPPERCASSED message - gif
 RD - random gif
 HELP ME GIF BOT - this help message`
 
+const rdMax = max => Math.floor(Math.random() * max)
+
 bot.login(TOKEN)
 
 bot.on('ready', () => {
@@ -37,6 +39,6 @@ bot.on('message', async msg => {
       return msg.reply('cannot find gif :(')
     }
 
-    msg.channel.send(gifs[0].embed_url)
+    msg.channel.send(gifs[rdMax(gifs.length)].embed_url)
   }
 })
