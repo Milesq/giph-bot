@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "discord.js": "^12.3.1",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "gif-search": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
