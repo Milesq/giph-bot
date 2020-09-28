@@ -3,13 +3,12 @@ const { DISCORD_TOKEN, GIPHY_TOKEN } = process.env
 
 const Discord = require('discord.js')
 const giphy = require('giphy-api')(GIPHY_TOKEN)
+const randomWithDescChances = require('./randomWithDescChances')
 const bot = new Discord.Client()
 
 const HELP_MSG = `UPPERCASSED message - gif
 RD - random gif
 HELP ME GIF BOT - this help message`
-
-const rdMax = max => Math.floor(Math.random() * max)
 
 bot.login(DISCORD_TOKEN)
 
@@ -39,6 +38,8 @@ bot.on('message', async msg => {
       return msg.reply('cannot find gif :(')
     }
 
-    msg.channel.send(gifs[rdMax(gifs.length)].embed_url)
+    const choosenIndex = randomWithDescChances(gifs.length)
+
+    msg.channel.send(gifs[choosenIndex].embed_url)
   }
 })
