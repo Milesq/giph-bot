@@ -10,7 +10,9 @@ bot.on('ready', () => {
 })
 
 bot.on('message', msg => {
-  if (msg.content === 'ping') {
+  const { content } = msg
+
+  if (content.toLocaleUpperCase('pl') === content) {
     msg.channel.send('pong')
   }
 })
