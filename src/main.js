@@ -1,6 +1,6 @@
 require('dotenv').config()
 const Discord = require('discord.js')
-const gifSearch = require('gif-search')
+const giphy = require('giphy-api')()
 const bot = new Discord.Client()
 
 const { TOKEN } = process.env
@@ -18,12 +18,16 @@ bot.on('message', async msg => {
   const { content } = msg
 
   if (content === 'HELP ME GIF BOT') {
-    msg.reply(HELP_MSG)
+    return msg.reply(HELP_MSG)
   }
 
   if (content.toLocaleUpperCase('pl') === content) {
-    const gifUrl = await gifSearch.query(content)
+    const { data: gifs } = await giphy.search(content)
 
-    msg.channel.send(gifUrl)
+    if (!gifs.length) {
+      return msg.reply('cannot find gif')
+    }
+
+    msg.channel.send(gifs[0].embed_url)
   }
 })
