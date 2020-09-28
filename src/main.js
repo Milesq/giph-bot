@@ -1,9 +1,9 @@
 require('dotenv').config()
-const Discord = require('discord.js')
-const giphy = require('giphy-api')()
-const bot = new Discord.Client()
+const { DISCORD_TOKEN, GIPHY_TOKEN } = process.env
 
-const { TOKEN } = process.env
+const Discord = require('discord.js')
+const giphy = require('giphy-api')(GIPHY_TOKEN)
+const bot = new Discord.Client()
 
 const HELP_MSG = `UPPERCASSED message - gif
 RD - random gif
@@ -11,7 +11,7 @@ HELP ME GIF BOT - this help message`
 
 const rdMax = max => Math.floor(Math.random() * max)
 
-bot.login(TOKEN)
+bot.login(DISCORD_TOKEN)
 
 bot.on('ready', () => {
   console.info(`Logged in as ${bot.user.tag}!`)
