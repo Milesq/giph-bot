@@ -34,7 +34,7 @@ bot.on('message', async msg => {
     const { data: gifs } = await giphy.search(content)
 
     if (!gifs.length) {
-      return msg.reply('cannot find gif')
+      return msg.reply('cannot find gif :(')
     }
 
     msg.channel.send(gifs[0].embed_url)
