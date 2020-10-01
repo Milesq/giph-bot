@@ -31,7 +31,10 @@ bot.on('message', async msg => {
     return msg.reply(embed_url)
   }
 
-  if (content.toLocaleUpperCase('pl') === content) {
+  if (
+    content.toLocaleUpperCase('pl') === content &&
+    !/@-_=+\/\\/.test(content)
+  ) {
     const { data: gifs } = await giphy.search(content)
 
     if (!gifs.length) {
