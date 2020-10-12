@@ -1,12 +1,7 @@
-function countLots(x) {
-  let count = 0
-
-  for (let i = x; i > 0; --i) {
-    count += i
-  }
-
-  return count
-}
+const countLots = new Array(5)
+  .fill()
+  .map((el, i) => i + 1)
+  .reduce((x, y) => x + y)
 
 function randomWithDescChances(maxNum) {
   const howManyChances = countLots(maxNum)
